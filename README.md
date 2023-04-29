@@ -1,18 +1,13 @@
-## Getting Started
+# Agência Bancária | JAVA - Programação Orientada a Objetos
+    O software coloca o usuário em contexto de realizar ações comumentes em situações
+    de transações bancárias.
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+## Principais Opções:
+- Depósito
+- Saque
+- Cadastro
+- Transferência(entre aqueles que foram cadastrados)
+- Mostrar cadastros e dados relativos
 
-## Folder Structure
+<h3 align="center">🚧EM APRIMORAMENTO🚧</h3>
 
-The workspace contains two folders by default, where:
-
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
