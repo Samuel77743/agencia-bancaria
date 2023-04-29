@@ -66,7 +66,7 @@ public class Conta {
     ////////////////////////////////////
     public void sacar(double valor) {
         if(valor > getSaldo()) {
-            System.out.printf("\n\nVOCÊ NÃO TEM SALDO SUFICIENTE PARA SACAR R$.2%f", valor);
+            System.out.printf("\n\nVOCÊ NÃO TEM SALDO SUFICIENTE PARA SACAR R$ %.2f", valor);
             System.out.printf("\nSALDO ATUAL: R$ %.2f\n", this.getSaldo());
         }
         else if(valor <= 0) {

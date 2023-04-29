@@ -160,7 +160,7 @@ public class Application {
             if(contasBancarias.size() > 0) {
                 
                 for(Conta conta : contasBancarias) {
-                    System.out.println( conta.getNumConta() + "º CONTA: " + conta);
+                    System.out.println( "\n" + conta.getNumConta() + "º CONTA: " + conta);
                 }
             }
             else{
