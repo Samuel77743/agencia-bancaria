@@ -14,7 +14,7 @@
 
 -> Acesse o prompt de comando
 
--> Navegue até o diretório onde está o aquivo "**agencia-bancaria.jar**" (usando comando "*cd <nome-diretorio>*"
+-> Navegue até o diretório onde está o aquivo "**agencia-bancaria.jar**" (usando comando "*cd <nome-diretorio>*")
     
 -> Quando estiver no diretório do arquivo digite: **java -jar agencia-bancaria.jar**
 
