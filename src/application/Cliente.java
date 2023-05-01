@@ -10,7 +10,9 @@ public class Cliente {
     private String email;
     
 
-    public Cliente(){}
+    public Cliente(){
+            
+    }
 
     public Cliente(String nome, String cpf, String email) {
         this.numPessoa = qntClientes;
