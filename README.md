@@ -11,6 +11,7 @@
 
 ## Dicas para execução
 É possível executar o programa apenas com o arquivo "**agencia-bancaria.jar**"
+
 -> Acesse o prompt de comando
 
 -> Navegue até o diretório onde está o aquivo "**agencia-bancaria.jar**" (usando comando "*cd <nome-diretorio>*"
