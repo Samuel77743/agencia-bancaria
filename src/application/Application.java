@@ -128,7 +128,7 @@ public class Application {
         Conta contaRem = encontrarConta(ncontaRem);
         Conta contaDest = encontrarConta(ncontaDest); 
 
-        if(contaRem != null || contaDest != null){
+        if(contaRem != null && contaDest != null){
             System.out.print("Digite o valor que deseja transferir: ");
             double valor = input.nextDouble();
             contaRem.transferir(contaDest, valor);
