@@ -1,6 +1,7 @@
 package application;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
@@ -31,37 +32,49 @@ public class Application {
         System.out.println("[5] Criar conta");
         System.out.println("\n[0] Sair");
 
-        System.out.print("\nSUA RESPOSTA --> ");
-        int resp = input.nextInt();
+        boolean inputValidado = false;
 
-        switch (resp) {
-            case 0:
-                //CASE 0: Sair
-                System.out.print("\n-----Operação Finalizada-----\n");
-                System.exit(0);
-                break;
-        
-            case 1:
-                sacar();
-                break;
-            case 2:
-                depositar();
-                break;
-            case 3:
-                transferir();
-                break;
-            case 4:
-                listarContas();
-                    break;
-            case 5:
-                criarConta();
-                break;
+        while(inputValidado == false) {
+            try{
+                System.out.print("\nSUA RESPOSTA --> ");
+                
+                int resp = input.nextInt();
+                inputValidado = true;
 
-            default:
-            System.out.print("\n--------Opção Inválida--------\n\n\n");
-            home(); //Reinício
+                switch (resp) {
+                    case 0:
+                        //CASE 0: Sair
+                        System.out.print("\n----- Operação Finalizada -----\n");
+                        System.exit(0);
+                        break;
+                
+                    case 1:
+                        sacar();
+                        break;
+                    case 2:
+                        depositar();
+                        break;
+                    case 3:
+                        transferir();
+                        break;
+                    case 4:
+                        listarContas();
+                            break;
+                    case 5:
+                        criarConta();
+                        break;
+
+                    default:
+                    System.out.println("\n--------Opção Inválida--------");
+                    home();
+                }
+
+            } catch(InputMismatchException e) {
+                System.out.println("\n\n===== DIGITE APENAS NÚMEROS =====");
+                input.nextLine(); //Limpando Buffer
+            }
         }
-    }
+    }           
 
     //Função que sincronizará a conta que o cliente deseja acessar
     public static Conta encontrarConta(int numConta) {
@@ -172,7 +185,7 @@ public class Application {
 
         contasBancarias.add(conta);
 
-        System.out.print("\n------CONTA CRIADA COM SUCESSO------\n");
+        System.out.print("\n------ CONTA CRIADA COM SUCESSO ------\n");
         home();
     }    
 }
