@@ -10,7 +10,7 @@ public class Application {
 
     static Scanner input = new Scanner(System.in);
     public static ArrayList<Conta> contasBancarias;
-
+    public static boolean inputValidado = true;
     public static void main(String[] args) {
                       
         contasBancarias = new ArrayList<Conta>();
@@ -32,13 +32,13 @@ public class Application {
         System.out.println("[5] Criar conta");
         System.out.println("\n[0] Sair");
 
-        boolean inputValidado = false;
+        inputValidado = false;
 
         while(inputValidado == false) {
             try{
                 System.out.print("\nSUA RESPOSTA --> ");
                 
-                int resp = input.nextInt();
+                int resp = input.nextInt(); //Caso seja inválido restart e input não é validado
                 inputValidado = true;
 
                 switch (resp) {
@@ -95,61 +95,102 @@ public class Application {
     //CASE 1: Saque
     public static void sacar() {
         System.out.println("\n========= SAQUE =========");
-        System.out.print("Digite o número da conta: ");
-        int numeroConta = input.nextInt();
 
-        Conta conta = encontrarConta(numeroConta);
+        inputValidado = false;
+        while(inputValidado == false) {
+            try {
+                System.out.print("Digite o número da conta: ");
+                int numeroConta = input.nextInt();
 
-        if(conta != null) {
-            System.out.print("Digite o valor que deseja sacar: ");
-            double valorSaque = input.nextDouble();
-            conta.sacar(valorSaque);
+                Conta conta = encontrarConta(numeroConta);
+
+                if(conta != null) {
+                
+                    System.out.print("Digite o valor que deseja sacar: ");
+                    double valorSaque = input.nextDouble();
+                    conta.sacar(valorSaque);
+                }
+                
+                else {
+                    System.out.println("\n=====Conta não encontrada!=====");               
+                }
+                
+                inputValidado = true;
+                home();
+            } catch(InputMismatchException e) {
+                System.out.println("\n\n===== DIGITE APENAS NÚMEROS =====");
+                input.nextLine(); //Limpando Buffer
+            }
         }
-        else {
-            System.out.println("\n=====Conta não encontrada!=====");               
-        }
-        home();
     }
 
     //CASE 2: DEPOSITAR
     public static void depositar() {
-        System.out.println("\n===== DEPÓSITO =====");
-        System.out.print("Digite o número da conta: ");
-        int numeroConta = input.nextInt();
+        
+        inputValidado = false;
+        while(inputValidado == false) {
+            
+            try {
+                System.out.println("\n===== DEPÓSITO =====");
+                System.out.print("Digite o número da conta: ");
+                int numeroConta = input.nextInt();
 
-        Conta conta = encontrarConta(numeroConta);
+                Conta conta = encontrarConta(numeroConta);
 
-        if(conta != null) {
-            System.out.print("Digite o valor que deseja depositar: ");
-            double valorDeposito = input.nextDouble();
-            conta.depositar(valorDeposito);
+                if(conta != null) {
+                    System.out.print("Digite o valor que deseja depositar: ");
+                    double valorDeposito = input.nextDouble();
+                    conta.depositar(valorDeposito);
+                }
+                else{
+                    System.out.println("\n=====Conta não encontrada!=====");
+                }
+                home();
+            } catch(InputMismatchException e) {
+                System.out.println("\n\n===== DIGITE APENAS NÚMEROS =====");
+                input.nextLine(); //Limpando Buffer
+            }   
         }
-        else{
-            System.out.println("\n=====Conta não encontrada!=====");
-        }
-        home();
     }
 
     //CASE 3: TRANSFERIR
     public static void transferir() {
-        System.out.println("\n========= TRANSFERÊNCIA =========");
-        System.out.print("Digite o número da SUA conta: ");
-        int ncontaRem = input.nextInt();
-        System.out.print("\nDigite o número da conta do destinatário: ");
-        int ncontaDest = input.nextInt();
-        
-        Conta contaRem = encontrarConta(ncontaRem);
-        Conta contaDest = encontrarConta(ncontaDest); 
 
-        if(contaRem != null && contaDest != null){
-            System.out.print("Digite o valor que deseja transferir: ");
-            double valor = input.nextDouble();
-            contaRem.transferir(contaDest, valor);
+        inputValidado = false;
+
+        while(inputValidado == false) {
+            
+            try {
+                System.out.println("\n========= TRANSFERÊNCIA =========");
+                
+                System.out.print("Digite o número da SUA conta: ");
+                int ncontaRem = input.nextInt();
+
+                System.out.print("\nDigite o número da conta do destinatário: ");
+                int ncontaDest = input.nextInt();
+                inputValidado = true;
+                
+            
+                Conta contaRem = encontrarConta(ncontaRem);
+                Conta contaDest = encontrarConta(ncontaDest); 
+                
+                if(contaRem != null && contaDest != null){
+                    System.out.print("Digite o valor que deseja transferir: ");
+                    double valor = input.nextDouble();
+                    contaRem.transferir(contaDest, valor);
+                }
+                else {
+                    System.out.println("\n=====Conta(s) não encontrada(s)!=====");        
+                }
+                home();
+
+            } catch(InputMismatchException e) {
+                System.out.println("\n\n===== DIGITE APENAS NÚMEROS =====");
+                input.nextLine(); //Limpando Buffer
+                }
         }
-        else {
-            System.out.println("\n=====Conta(s) não encontrada(s)!=====");        
-        }
-        home();
+               
+            
     }
 
     //CASE 4: Listar contas cadastradas
@@ -168,24 +209,34 @@ public class Application {
 
     //CASE 5: Criar Conta
     public static void criarConta() {
-        System.out.println("\n========CADASTRO DE CONTA========");
-        input.nextLine(); //Para limpar o buffer
 
-        System.out.print("\nNOME........... ");
-        String conta_nome = input.nextLine();
+        inputValidado = false;
+        while(inputValidado == false) {
+            try {
+                System.out.println("\n========CADASTRO DE CONTA========");
+                input.nextLine(); //Para limpar o buffer
 
-        System.out.print("CPF............ ");
-        String cpf = input.nextLine();
+                System.out.print("\nNOME........... ");
+                String conta_nome = input.nextLine();
 
-        System.out.print("E-mail......... ");
-        String email = input.nextLine();
-        /////////////////////////////////////////////
-        Cliente cliente = new Cliente(conta_nome, cpf, email);
-        Conta conta = new Conta(cliente);
+                System.out.print("CPF............ ");
+                String cpf = input.nextLine();
 
-        contasBancarias.add(conta);
+                System.out.print("E-mail......... ");
+                String email = input.nextLine();
+                /////////////////////////////////////////////
+                Cliente cliente = new Cliente(conta_nome, cpf, email);
+                Conta conta = new Conta(cliente);
 
-        System.out.print("\n------ CONTA CRIADA COM SUCESSO ------\n");
-        home();
+                contasBancarias.add(conta);
+
+                System.out.print("\n------ CONTA CRIADA COM SUCESSO ------\n");
+                home();
+
+            } catch(InputMismatchException e) {
+                System.out.println("\n\n===== DIGITE APENAS NÚMEROS =====");
+                input.nextLine(); //Limpando Buffer
+            }
+        }   
     }    
 }
